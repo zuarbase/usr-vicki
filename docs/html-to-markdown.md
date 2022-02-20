@@ -1,8 +1,3 @@
-Vicki Stanfield : Redirecting Input and Output in Linux  
-
-1.  [Vicki Stanfield](index.html)
-2.  [Overview](Overview_163912.html)
-
 Vicki Stanfield : Redirecting Input and Output in Linux
 =======================================================
 
