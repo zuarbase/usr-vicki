@@ -1,0 +1,332 @@
+Date: Tue, 22 Feb 2022 02:43:09 +0000 (UTC)
+Message-ID: <899773523.29.1645497789697@fd1d1e9dad81>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_28_1659670482.1645497789696"
+
+------=_Part_28_1659670482.1645497789696
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Useful Docker-compose Commands</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Useful Docker-compose Commands</h1>
+    <div class=3D"Section1">
+        <p>At Zuar, we mostly use docker-compose instead of docker.</p>
+<p>To start a docker and its containers and run the command in the backgrou=
+nd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">docker-c=
+ompose up -d</pre>=20
+</div>
+</div>
+<p>To see the running containers:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">docker-c=
+ompose ps</pre>=20
+</div>
+</div>
+<p>The output looks like this:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">   Name =
+                Command               State                   Ports        =
+      =20
+---------------------------------------------------------------------------=
+---------------
+auth         /app/entry_debug.sh /opt/p ...   Up       127.0.0.1:10001-&gt;=
+10001/tcp,       =20
+                                                       127.0.0.1:5756-&gt;5=
+756/tcp          =20
+db           docker-entrypoint.sh postgres    Up       5432/tcp            =
+              =20
+mitto        /app/entry.sh                    Exit 0                       =
+              =20
+mitto_zwaf   dockerize -timeout 1m -wai ...   Up       0.0.0.0:443-&gt;443/=
+tcp,:::443-&gt;443/tc
+                                                       p, 0.0.0.0:80-&gt;80=
+/tcp,:::80-&gt;80/tcp
+scheduler    /app/entry.sh /opt/pyenv/b ...   Up       127.0.0.1:10003-&gt;=
+10003/tcp        =20
+vsftpd       /app/entry.sh                    Exit 0                       =
+              =20
+webapp       /app/entry_debug.sh /opt/p ...   Up       127.0.0.1:10002-&gt;=
+10002/tcp,       =20
+                                                       127.0.0.1:7127-&gt;7=
+127/tcp   </pre>=20
+</div>
+</div>
+<p></p>
+<p>Each line of the output includes the following columns:</p>
+<ul>
+<li><p><code>Name</code>&nbsp;=E2=80=93 The name of the container.</p></li>
+<li><p><code>Command</code>&nbsp;=E2=80=93 The command that is executed whe=
+n starting the container.</p></li>
+<li><p><code>State</code>&nbsp;=E2=80=93 The status of the container.</p></=
+li>
+<li><p><code>Ports</code>&nbsp;=E2=80=93 The container=E2=80=99s published =
+ports.</p></li>
+</ul>
+<p>You might also list only the container IDs with this command:</p>
+<p><code>docker-compose ps -q</code></p>
+<p>The output looks like this:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">66b8d62c=
+7ebe56f088feec1ece738510b8b5672d2d21d5ab51106938d4b93a80
+7fffc53b855c48b1bab447ebb58dd31d6ebee1130d100074aa97c62ff00914f0
+2fb9c5ed5644b293f3a2b3ce01e2d625eb4be60d946ed224468a202770b8b2b7
+db69dcab3dfe23887d4eb8346c6b586bc9dc3f96707f419ce31cad1ab8ed4113
+7308145ae14b8c922d9aa9eb5e39a44ac888c72d0120f8ed5c11d15803e10950
+f87ff48d2084cee0d244506e0cc00770c438e057691bf09eb051ed7c0e7c2242
+6f4206eba548319afa42d2101e70014f98c91d24c99374bb66ac483403162027</pre>=20
+</div>
+</div>
+<p>To restart the container, do this:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">docker-c=
+ompose down &amp;&amp; docker-compose up -d</pre>=20
+</div>
+</div>
+<p>You are going to need to view the logs in the docker container with this=
+ command:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: sql; gutter: false; theme: Confluence" data-theme=3D"Confluence">docker-c=
+ompose logs -f</pre>=20
+</div>
+</div>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_28_1659670482.1645497789696--
