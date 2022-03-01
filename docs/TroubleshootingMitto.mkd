@@ -20,20 +20,20 @@ Nginx Logs:
 
 	tail -n 100 -f /var/log/nginx/access.log_
 
-	tail -n 100 -f /var/log/nginx/error.log_ 
+	tail -n 100 -f /var/log/nginx/error.log
 
 Mitto Logs:
 ---
 
 	tail -n 100 -f /var/mitto/log/mitto.log_
 
-	tail -n 100 -f /var/mitto/log/gunicorn.log_
+	tail -n 100 -f /var/mitto/log/gunicorn.log
 
-	tail -n 100 -f /var/mitto/log/uwsgi.log_
+	tail -n 100 -f /var/mitto/log/uwsgi.log
 
-	tail -n 100 -f /var/mitto/log/scheduler.log_
+	tail -n 100 -f /var/mitto/log/scheduler.log
 
-	tail -n 100 -f /var/mitto/log/auth.log_
+	tail -n 100 -f /var/mitto/log/auth.log
 
 Individual Job Logs:
 ---
@@ -45,7 +45,7 @@ Memory check:
 
 	sudo grep -i oom /var/log/*log_
 
-	sudo fgrep OutOfMemory var/mitto/log/*log_
+	sudo fgrep OutOfMemory var/mitto/log/*log
 
 Email
 ---
@@ -58,9 +58,9 @@ Mitto Services:
 
 	sudo systemctl_
 
-	sudo systemctl status_
+	sudo systemctl status
 
-	sudo systemctl status --all_
+	sudo systemctl status --all
 
 ###Important Services:
 
