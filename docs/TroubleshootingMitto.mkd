@@ -13,38 +13,39 @@ Mitto Logs:
 ----
 Tail all logs:
 
-`tail -f -n 1 /var/mitto/log/mitto.log /var/mitto/log/gunicorn.log /var/mitto/log/uwsgi.log /var/mitto/log/scheduler.log /var/mitto/log/auth.log /var/log/nginx/access.log /var/log/nginx/error.log` 
+	tail -f -n 1 /var/mitto/log/mitto.log /var/mitto/log/gunicorn.log /var/mitto/log/uwsgi.log /var/mitto/log/scheduler.log /var/mitto/log/auth.log /var/log/nginx/access.log /var/log/nginx/error.log_ 
 
 Nginx Logs:
 ---
 
-`tail -n 100 -f /var/log/nginx/access.log`
+	tail -n 100 -f /var/log/nginx/access.log_
 
-`tail -n 100 -f /var/log/nginx/error.log`
+	tail -n 100 -f /var/log/nginx/error.log_ 
 
 Mitto Logs:
 ---
-`tail -n 100 -f /var/mitto/log/mitto.log`
 
-`tail -n 100 -f /var/mitto/log/gunicorn.log`
+	tail -n 100 -f /var/mitto/log/mitto.log_
 
-`tail -n 100 -f /var/mitto/log/uwsgi.log`
+	tail -n 100 -f /var/mitto/log/gunicorn.log_
 
-`tail -n 100 -f /var/mitto/log/scheduler.log`
+	tail -n 100 -f /var/mitto/log/uwsgi.log_
 
-`tail -n 100 -f /var/mitto/log/auth.log`
+	tail -n 100 -f /var/mitto/log/scheduler.log_
+
+	tail -n 100 -f /var/mitto/log/auth.log_
 
 Individual Job Logs:
 ---
 
-`tail -n 100 -f /var/log/mitto/{job_name}.log`
+	tail -n 100 -f /var/log/mitto/{job_name}.log_
 
 Memory check:
 ---
 
-`sudo grep -i oom /var/log/*log`
+	sudo grep -i oom /var/log/*log_
 
-`sudo fgrep OutOfMemory var/mitto/log/*log`
+	sudo fgrep OutOfMemory var/mitto/log/*log_
 
 Email
 ---
@@ -55,11 +56,11 @@ Email
 Mitto Services:
 ---
 
-`sudo systemctl`
+	sudo systemctl_
 
-`sudo systemctl status`
+	sudo systemctl status_
 
-`sudo systemctl status --all`
+	sudo systemctl status --all_
 
 ###Important Services:
 
@@ -70,6 +71,3 @@ Mitto Services:
 5. scheduler
 6. cron
 7. postgresql
-
-
-
