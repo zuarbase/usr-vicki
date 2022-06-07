@@ -1,0 +1,21 @@
+# Environmental Variables in Mitto
+
+## Purpose of the file
+
+####If your Mitto job depends upon specific Environment variables, they should be specified in Mitto's .env file.
+
+## Location of the file
+
+####In a Mitto, the .env file is located at:
+
+`/etc/mitto/.env`
+
+## File Format:
+
+####The format is the same as if you were exporting the variables from the Command Line on the Mitto instance. Here is an example:
+
+`SECRET=SECRETVALUE  
+ORACLE_HOME=/opt/oracle/instantclient_21_5/  
+ORACLE_BASE=/opt/oracle/  
+ORACLE_SID=cdb1  
+LD_LIBRARY_PATH=/opt/oracle/instantclient_21_5`

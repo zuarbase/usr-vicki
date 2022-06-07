@@ -1,0 +1,17 @@
+Here are some tricks for searching a Mitto store.
+===
+1. If you have fewer records in the store than expected (e.g., the key for your store may be missing one or more necessary components), you can always create a store that saves every record:
+store: {}
+Once you have a store with all records, you can work with the store on the command line.
+2. Get help: mitto store --help
+3. Print basic info about a store: sudo mitto store <store_name>
+4. Get just a count of records in the store: sudo mitto store -c <store_name>
+5. Pretty-print the first record in the store (e.g., if you want to see the structure/fields):
+    sudo mitto store <store_name> --jsonl --count 1 | jq .
+The --jsonl option prints the store as JSONL -- each record in the store is output on a single line as JSON.
+The --json option prints the store as JSON.
+6. Look for all records containing a specific value: sudo mitto store <store_name> --jsonl | grep 123456.78
+7. Run gron to show paths on the first record: sudo mitto store <store_name> --jsonl --count 1 | gron
+8. Explore the contents of the store.
+    First, export the store to a file as JSON: sudo mitto store <store_name> --json > /tmp/store_name.json
+    Then, use something (e.g., jless) to explore it: jless /tmp/store_name.json
