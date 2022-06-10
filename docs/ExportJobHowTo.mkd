@@ -1,0 +1,120 @@
+# Export Job
+
+The Export job is a single job that combines the functionality offered by the Vizql Export and REST Export jobs.
+An export job will export all views in a workbook and save as either a CSV, and XLSX, or a PDF file. 
+
+To create an Export Job:
+
+1. Click Add Job in the Mitto Menu.
+2. Select Generic Job.
+3. Change the Type to Extract in the dropdown.
+4. Paste in the job with the desired output type:
+	A. CSV
+
+```{
+    /* Tableau server credentials (named credentials supported) */
+    "credentials": {
+        "username": "<username>"
+        "password": "<password>"
+    },
+    /* Tableau server configuration */
+    "server": {
+        "server": "https://tableau.zuar.com",
+        "site": "",
+        "user_id_to_impersonate": "5cf3542a-0c46-42fb-b6a5-27a96e41054a",
+    },
+    "export": {
+        "full": true,
+        "name": "example-csv",
+        "type": "csv",
+        "view_filters": {
+            "State": ["Louisiana", "Texas"],
+            "Category": ["Office Supplies", "Furniture"]
+        },
+        "view": "Overview",
+        "workbook": "Superstore"
+    }
+}```
+
+	B. XLSX
+
+```{
+    /* Tableau server credentials (named credentials supported) */
+    "credentials": {
+        "username": "<username>"
+        "password": "<password>"
+    },
+    /* Tableau server configuration */
+    "server": {
+        "server": "https://tableau.zuar.com",
+        "site": "",
+        "user_id_to_impersonate": "5cf3542a-0c46-42fb-b6a5-27a96e41054a",
+    },
+    "export": {
+        "full": true,
+        "name": "example-excel",
+        "type": "xlsx",
+        "view_filters": {
+            "State": ["Louisiana", "Texas"],
+            "Category": ["Office Supplies", "Furniture"]
+        },
+        "view": "Overview",
+        "workbook": "Superstore"
+    }
+}```
+
+
+	C. PDF
+
+```{
+    /* Tableau server credentials (named credentials supported) */
+    "credentials": {
+        "username": "<username>"
+        "password": "<password>"
+    },
+    /* Tableau server configuration */
+    "server": {
+        "server": "https://tableau.zuar.com",
+        "site": "",
+        "user_id_to_impersonate": "5cf3542a-0c46-42fb-b6a5-27a96e41054a",
+    },
+    "export": {
+        "full": true,
+        "modifications": [
+            {
+                "action": "update",
+                "destination": "files",
+                "items": {
+                    "clientDimension": "{\"w\": 1280, \"h\": 1024}",
+                    "dashboardPortSize": "{\"w\": 1280, \"h\": 1024}",
+                    "worksheetPortSize": "{\"w\": 1280, \"h\": 1024}"
+                },
+                "request": "bootstrap"
+            }
+        ],
+        "name": "example-pdf",
+        "options": {
+            "imageHeight": "0",
+            "imageWidth": "0",
+            "pageFitHorizontal": "1",
+            "pageFitVertical": "1",
+            "pageOrientationOption": "landscape",
+            "pageScaleMode": "auto",
+            "pageScalePercent": "100",
+            "pageSizeOption": "letter"
+        },
+        "type": "pdf",
+        "view_filters": {
+            "State": ["Louisiana", "Texas"],
+            "Category": ["Office Supplies"]
+        },
+        "view": "Overview",
+        "workbook": "Superstore"
+    }
+}```
+
+
+5. Adjust job config details as appropriate.
+6. Set up email
+7. To export just the Overview view, change the value of "full" to false in the export stanza. This causes only the views specified by the view paramater to be exported.
+

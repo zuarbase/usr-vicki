@@ -1,52 +1,50 @@
-# To get these values, view ECR repo in the AWS MC & click "view push commands"
-ECR := 575296055612.dkr.ecr.us-east-1.amazonaws.com
-REPO := public.ecr.aws/b7r0k8v0
-IMAGE := mkdocs-material
-TAG := latest
+# This Makefile is just a convenience.  It is not an essential part
+# of the example documentation repo.
 
-PIP := pip
-PUBLISH_SRC := site/
-PUBLISH_TARGET := www.zuar.com:static/w3/api/mitto/__stage__
 
-pyenv:
-	[ ! -f requirements.txt ] || $(PIP) install -r requirements.txt
-.PHONY: pyenv
+LOCAL_IMAGE := zmkdocs:latest
+ECR_REPO := public.ecr.aws/zuar
+ECR_IMAGE := $(ECR_REPO)/zmkdocs:latest
 
-css:
-	[ -d docs/css ] || mkdir docs/css
-	pygmentize -S default -f html -a .codehilite > docs/css/pygments.css
-.PHONY: css	
 
+################################################################################
+# work with images built locally
+#
+
+# run a local image (not from ECR) to serve content
+local-serve:
+	cd docs; docker run --rm -it -p 8000:8000 -v `pwd`:/docs $(LOCAL_IMAGE)
+.PHONY: local-serve
+
+# run a local image (not from ECR) to build content
+local-build:
+	cd docs; docker run --rm -it -p 8000:8000 -v `pwd`:/docs $(LOCAL_IMAGE) mkdocs build
+.PHONY: local-build
+
+################################################################################
+# work with images from ECR
+#
+
+# pull an image from ECR
 pull:
-	docker pull $(REPO)/$(IMAGE):$(TAG)
+	docker pull $(ECR_IMAGE)
 .PHONY: pull
 
-docs:
-	docker run --rm -it -p 8000:8000 -v ${PWD}:/docs $(REPO)/$(IMAGE):$(TAG)
-.PHONY: docs
-
+# run an image from ECR to serve content
 serve:
-	docker run --rm -it -p 8000:8000 -v ${PWD}:/docs $(REPO)/$(IMAGE):$(TAG) serve
+	cd docs; docker run --rm -it -p 8000:8000 -v `pwd`:/docs $(ECR_IMAGE)
 .PHONY: serve
 
-gh-deploy:
-	docker run --rm -it -p 8000:8000 -v ${PWD}:/docs $(REPO)/$(IMAGE):$(TAG) gh-deploy || true
-	echo "================================================================================"
-	echo "Now run the command 'git push origin gh-pages' to publish your documentation"
-	echo "================================================================================"
-.PHONY: gh-deploy
+# run an image from ECR to build content
+build:
+	cd docs; docker run --rm -it -p 8000:8000 -v `pwd`:/docs $(ECR_IMAGE) mkdocs build
+.PHONY: build
+
+# login to Zuar's Docker ECR
+docker-login:
+	aws ecr-public get-login-password | docker login --username AWS --password-stdin $(ECR_REPO)
+.PHONY: docker-login
 
 clean:
-	@rm -rf site
-	@mkdir site
-	@touch site/.nojekyll
+	rm -rf docs/site
 .PHONY: clean
-
-## You must have the proper AWS credentials to publish content to AWS
-publish:
-	rsync -arv $(PUBLISH_SRC) $(PUBLISH_TARGET)
-.PHONY: publish
-
-docker-pull:
-	docker pull $(REPO)/$(IMAGE):$(TAG)
-.PHONY: docker-pull

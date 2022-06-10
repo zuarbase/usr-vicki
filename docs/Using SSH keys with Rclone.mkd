@@ -1,0 +1,81 @@
+#How to use SSH with an Rclone Job
+
+####This article is intended to clarify how to use SSH keys with an Rclone Job. It will show how to use Rclone to copy a local file to a remote sytem and also how to copy a file from a remote system to localhost:/var/mitto/data/
+
+##Instructions:
+
+####To create an Rclone Job that copies a file to a remote host:
+1. Create a generic credential called Rclone SFTP
+```
+{
+"type": "sftp", "sftp_host": "<REMOTEHOST", "sftp_user": "<REMOTEHOSTUSER>", "sftp_pass": "<REMOTEHOSTPASSWORD>"}
+```
+2. Create a generic Job config and change the type to Rclone and copy in the following config. Edit the credentials and filename and location as needed. (this one copies a file from the local /dev/mitto/data directory to the remote server):
+```
+{
+credentials: Rclone SFTP
+command: copy
+targets: {
+source: /var/mitto/data/file2copy
+destination: ":sftp:/path/to/directory"
+}
+rclone_flags: [
+{
+flag: --max-age
+value: 24h
+}
+]
+timeout_seconds: 18000
+}
+```
+
+####To create an Rclone Job that copies a file from a remote host:
+1. Create a generic credential called Rclone SFTP
+```
+{
+"type": "sftp", "sftp_host": "<REMOTEHOST", "sftp_user": "<REMOTEHOSTUSER>", "sftp_pass": "<REMOTEHOSTPASSWORD>"}
+```
+2. Create a Job config and change the type to Rclone and copy in the following config. Edit the credentials and filename and location as needed. (this one copies a file from a remote location to the local /var/mitto/data directory): 
+```
+{
+credentials: Rclone SFTP
+command: copy
+targets: {
+source: ":sftp:/home/ubuntu/file2copy"
+destination: "/var/mitto/data"
+}
+rclone_flags: [
+{
+flag: --max-age
+value: 24h
+}
+]
+timeout_seconds: 18000
+}
+```
+####To use a key file instead of a password, use the following config instead:
+```
+{
+    "command": "copy",
+    "credentials": null,
+    "rclone_flags": [
+        {
+            "flag": "--sftp-key-file",
+            "value": "/var/mitto/etc/.ssh/private_key"
+        },
+        {
+            "flag": "--sftp-user",
+            "value": "<USERNAME>"
+        },
+        {
+            "flag": "--sftp-host",
+            "value": "<sftp.hostname.com>"
+        }
+    ],
+    "targets": {
+        "destination": ":sftp:path/to/folder/",
+        "source": "/var/mitto/data/file2copy"
+    },
+    "timeout_seconds": 18000
+}
+```

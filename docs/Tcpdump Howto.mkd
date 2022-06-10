@@ -1,8 +1,9 @@
-Tcpdump Howto
-=============
+# Tcpdump Howto  
+  
+tcpdump is an awesome CLI tool to check whether traffic is coming into or going out of your Mitto box. To use it, log onto the Mitto via SSH and then use the *ip addr* command to determine which interface to use. Then use the following commands to see the traffic that is important to you.  
 
-Shows traffic on interface eth0 on port 8080
-------
+
+## Shows traffic on interface eth0 on port 8080
 
 	tcpdump -i eth0 tcp port 8080 -vv -X_
 
@@ -12,22 +13,18 @@ Shows traffic on interface eth0 on port 8080
 
 	-X show both HEX and ASCII
 
-Shows traffic going to or coming from the host IP
------
+## Shows traffic both going to or coming from the host IP
 
 	tcpdump host 10.0.0.10_
 
-Shows traffic coming from 10.0.0.10
-----
+## Shows traffic coming from 10.0.0.10
 
 	tcpdump src 10.0.0.10_
 
-Shows traffic going to 10.0.0.10
-----
+## Shows traffic going to 10.0.0.10
 	
 	tcpdump dst 10.0.0.10_
 
-Shows all traffic on the 10.0.0.0/24 subnet
-----
+## Shows all traffic on the 10.0.0.0/24 subnet
 
 	tcpdump net 10.0.0.0./24_
