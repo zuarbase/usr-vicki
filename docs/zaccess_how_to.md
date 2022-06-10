@@ -13,6 +13,7 @@ computer systems.  To address these problems and to better secure customer syste
 is transitioning to an internally developed tool called `zaccess`.  This note describes
 how to use `zaccess` in situations where one previously used `ssh` and SSH keys.
 
+
 ### Installing
 
 First you must install the vault CLI: https://www.vaultproject.io/docs/install. Select the precompiled binary for your OS. In Linux, open a terminal and test the install with this command:
