@@ -143,20 +143,20 @@ overwrite any keys that already exist. The keypair can be named something like
     uses the name `vault`. If he selects the default, he will overwrite any
     existing key with that name, so he should be careful.
 
-    ![SSH Keygen filename](../images/ssh-keygen1.png "SSH keygen filename prompt")
+    ![SSH Keygen filename](images/ssh-keygen1.PNG "SSH keygen filename prompt")
 
     Steve will also be prompted for a passphrase and asked to confirm it.
     `zaccess` does not currently support keys with passphrases, so he should
     just hit enter to leave it blank at both prompts.  `zaccess` does require a
     password of its own, so it is safe to use an empty passphrase.  
 
-    ![SSH Keygen passphrase](../images/ssh-keygen2.png "SSH
+    ![SSH Keygen passphrase](images/ssh-keygen2.PNG "SSH
     passphrase prompt")
 
     Steve will see the key fingerprint and randomart image if his key pair was
     successfully created.
 
-    ![SSH Keygen randomart](../images/ssh-keygen3.png "SSH Keygen randomart")
+    ![SSH Keygen randomart](images/ssh-keygen3.PNG "SSH Keygen randomart")
     
     SSH keys cannot be group or others accessible, so Steve's private key will
     need to only be rw for him.  Failure to do this will generate an error when
