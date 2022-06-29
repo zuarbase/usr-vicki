@@ -56,6 +56,7 @@ Before using `zaccess`, Steve must first:
 1. Install `vault`
 1. Install `zaccess`
 1. Be issued a username and password
+1. Login to vault
 1. Configure his environment
 1. Test that `zaccess` is working
 	
@@ -128,7 +129,7 @@ overwrite any keys that already exist. The keypair can be named something like
 === "Windows"
 
     If Steve wishes to create a key pair, he should open a Command Prompt as
-    System Administrator, by following these steps:
+    System Administrator and run `ssh-keygen`, by following these steps:
 
     ```
 	1. Press the Windows key.
@@ -143,20 +144,20 @@ overwrite any keys that already exist. The keypair can be named something like
     uses the name `vault`. If he selects the default, he will overwrite any
     existing key with that name, so he should be careful.
 
-    ![SSH Keygen filename](images/ssh-keygen1.PNG "SSH keygen filename prompt")
+    ![SSH Keygen filename](images/ssh-keygen1.png "SSH keygen filename prompt")
 
     Steve will also be prompted for a passphrase and asked to confirm it.
     `zaccess` does not currently support keys with passphrases, so he should
     just hit enter to leave it blank at both prompts.  `zaccess` does require a
     password of its own, so it is safe to use an empty passphrase.  
 
-    ![SSH Keygen passphrase](images/ssh-keygen2.PNG "SSH
+    ![SSH Keygen passphrase](images/ssh-keygen2.png "SSH
     passphrase prompt")
 
     Steve will see the key fingerprint and randomart image if his key pair was
     successfully created.
 
-    ![SSH Keygen randomart](images/ssh-keygen3.PNG "SSH Keygen randomart")
+    ![SSH Keygen randomart](images/ssh-keygen3.png "SSH Keygen randomart")
     
     SSH keys cannot be group or others accessible, so Steve's private key will
     need to only be rw for him.  Failure to do this will generate an error when
@@ -217,31 +218,32 @@ for your operating system and architecture
     1. Select Windows PowerShell ISE (do not runas administrator)
     1. Type the following commands at the prompt
 
-    ```
-	irm get.scoop.sh | iex
-	scoop install vault
-	vault
-	```
-
+    ![irm command](images/irm_cmd.png "irm command")
+    
     If Steve gets an error about his Execution Policy, he should: 
     
     1. Open a different PowerShell window as administrator
     1. Change his Execution Policy to `bypass` with this command:
 
-	```
-	Set-ExecutionPolicy -ExecutionPolicy bypass
-	```
+    ![set execution policy](images/set-execution-policy.png "set execution
+    policy command")
+
+    A pop-up window will ask him to confirm that he wants to make the change
+    even thought it might expose him to a security risk. Once he clicks "yes",
+    he will be able to run the irm command from above.
+
+    ![confirm execution policy](images/set-execution-policy2.png "set execution
+    policy confirmation")
+
+    Once the irm command has run successfully, Steve will be able to use `scoop`
+    to install `vault` with the following command:
+
+    ![scoop install vault](images/scoop_install_vault.png "scoop install vault")
 
     Steve can confirm that the `vault` executable can be found and is working
     properly using the following command: 
 
-    ``` 
-    $ vault.exe version 
-    ```
-    You should see something like this: 
-    ``` 
-    Vault v1.10.0 (7738ec5d0d6f5bf94a809ee0f6ff0142cfa525a6) 
-    ```
+    ![vault version](images/vault_version.png "vault version")
 
     The version number and hash may differ, but the version number should be at
     least 1.10.0.
@@ -273,7 +275,7 @@ for your operating system and architecture
 ### Configure Your Environment
 
 To make using `zaccess` as convenient as possible, it is best to put a number
-of variables and values in your execution environment.  How this is done
+of variables and values in he execution environment.  How this is done
 depends upon Steve's operating system.
 
 === "macOS & Linux"
@@ -286,14 +288,14 @@ depends upon Steve's operating system.
 	export VAULT_ADDR="https://vault.zuarbase.net:8200"
 	export VAULT_USER=steve
 	export VAULT_KEY=/home/steve/.ssh/vault
-	export VAULT_PASSWORD=<your-password>
 	```
-    If he doesn't have an existing `zaccess` environment, he only needs the first
-    three variables.
+    If Steve only sets up these three variables, he will be prompted for his
+    password when he uses `zaccess`. If he would prefer, he can set the
+    VAULT_PASSWORD variable as well so that he won't be prompted.
 
-    You will also want to add the path to `zaccess` to your System PATH variable
-    to allow you to call it without specifying the full path.  To do this, in
-    the file Steve added the environmental variables above, he should add the
+    He will also want to add the path to `zaccess` to your System PATH variable
+    to allow him to call it without specifying the full path.  To do this, in
+    the file Steve added the environmental variables above, he should also add the
     following:
     ```
     export PATH=/home/steve/Downloads/devops-zaccess/:$PATH
@@ -301,67 +303,77 @@ depends upon Steve's operating system.
     ```
 === "Windows"
 
-    1. Click the Start button
-    2. Use the search bar to search for Environmental Variables
-    3. In the System Properties window, click "Environment Variables"
-    4. Click New to add each of the variables below with their respective values:
+    In Windows, Steve should do the following:
 
-	```
-	VAULT_ADDR: "https://vault.zuarbase.net:8200"
-	VAULT_USER: steve 
-	VAULT_KEY: "C:\Users\steve\.ssh/vault" 
-	VAULT_PASSWORD: <your-password>
-	```
-    If Steve doesn't have an existing `zaccess` environment, he only needs the first
-    three variables.
+    1. Click the Windows button
+    1. Type cmd to bring up a Command Prompt
+    1. Set the following variables as shown below:
+    ```
+    VAULT_ADDR=https://vault.zuarbase.net:8200
+    VAULT_USER=steve
+    VAULT_KEY=/home/steve/.ssh/vault
+    ```
 
+    ![set up vault vars](images/set_env_vars.png "vault env vars")
+
+    If Steve only sets up these three variables, he will be prompted for his
+    password when he uses `zaccess`. If he would prefer, he can set the
+    VAULT_PASSWORD variable as well so that he won't be prompted.
     
-    You will also want to add the path to `zaccess` to your Windows PATH
-    variable to allow you to call it without specifying the full path.  To do
-    this, follow these steps: 
+    It is also preferable to add the path to `zaccess` to Steve's Windows PATH
+    variable to allow him to call it without specifying the full path.  To do
+    this, he should follow these steps: 
 
     1. Click the Start button
-    2. Use the search bar to search for Environmental Variables
-    3. In the System Properties window, click "Environment Variables"
-    4. Click "Path" in the System variables window.
-    3. Click the Edit button.
-    4. Click New
-    5. Type the following:
-    ```
-       C:\Users\steve\Downloads\devops-zaccess\ 
-    ```
-    6. Click OK
+    1. Use the search bar to search for Environmental Variables
+    1. In the System Properties window, click "Environment Variables"
+    1. Click "Path" in the System variables window.
+    1. Click the Edit button.
+    1. Click New
+    1. Type the following:
 
-    Alternatively, steve can copy zaccess.exe to a directory that is already in
-    his path.
+    ![PATH Window](images/env_vars_path_var.png "Path Window")
+
+
+### Login to `vault`
+
+=== "macOS & Linux"
+
+    Steve will need to login to vault before executing the `zaccess` command to
+    connect by using the following command:
 
     ```
-    $ cp ~\Downloads\devops-zaccess\zaccess ~\bin
+    vault login -method=userpass username=<USERNAME>
     ```
+
+=== "Windows"
+    Steve will need to login to vault before executing the `zaccess` command to
+    connect by using the following command:
+
+    ![set up vault vars](images/vault_login.png "vault login")
+
 
 ### Test `zaccess`
 
 === "macOS & Linux"
 
-    Confirm that the `zaccess` executable can be found and is working properly: 
+    Steve can confirm that the `zaccess` executable can be found and is working
+    properly by checking its version with the following command: 
+
     ``` 
     $ zaccess --version 
     ```
-    Steve should see something like this: 
+    He should see something like this: 
     ``` 
     zaccess v0.1.2
     ```
 
 === "Windows"
 
-    Confirm that the `zaccess` executable can be found and is working properly: 
-    ``` 
-    $ zaccess.exe --version 
-    ```
-    Steve should see something like this: 
-    ``` 
-    zaccess v0.1.2
-    ```
+    Steve can confirm that the `zaccess` executable can be found and is working
+    properly by checking its version with the following command: 
+    
+    ![zaccess_version](images/zaccess_version.png "zaccess version")
 
     ## Using `zaccess`
 
@@ -438,9 +450,10 @@ common situations:
 
 ## How to Reset Your Password
 
-If you want to reset your password and still know your old one, you will need to
+If Steve wants to reset his password and still knows his old one, he will need to
 do this: 
 
 ``` 
 $ vault write auth/userpass/users/$VAULT_USER password="newpass"
 ```
+The command is the same in Windows as it is in Mac/Linux.
